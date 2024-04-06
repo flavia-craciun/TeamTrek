@@ -1,0 +1,233 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
+        "projectName": "MobyLabWebProgramming.Core",
+        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
+        "packagesPath": "/Users/flaviacraciun/.nuget/packages/",
+        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/flaviacraciun/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Ardalis.SmartEnum": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Ardalis.SmartEnum.EFCore": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Ardalis.SmartEnum.SystemTextJson": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Ardalis.Specification": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Ardalis.Specification.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.128/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj",
+        "projectName": "MobyLabWebProgramming.Infrastructure",
+        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj",
+        "packagesPath": "/Users/flaviacraciun/.nuget/packages/",
+        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/flaviacraciun/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj": {
+                "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Ardalis.EFCore.Extensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.27, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.27, )"
+            },
+            "Microsoft.EntityFrameworkCore.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.27, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.27, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Serilog.Enrichers.Environment": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Serilog.Enrichers.Process": {
+              "target": "Package",
+              "version": "[2.0.2, )"
+            },
+            "Serilog.Enrichers.Thread": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Serilog.Expressions": {
+              "target": "Package",
+              "version": "[3.4.1, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.128/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
