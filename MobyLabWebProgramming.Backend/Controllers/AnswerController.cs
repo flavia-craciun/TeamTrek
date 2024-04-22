@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MobyLabWebProgramming.Core.DataTransferObjects;
 using MobyLabWebProgramming.Core.Responses;
@@ -18,19 +19,18 @@ public class AnswerController : AuthorizedController
 		_answerService = answerService;
 	}
 	
-    // [Authorize]
+    [Authorize]
 	[HttpGet("{answerId:guid}")]
-	public async Task<ActionResult<RequestResponse<AnswerDTO>>> GetAnswer([FromRoute] Guid id)
+	public async Task<ActionResult<RequestResponse<AnswerDTO>>> GetAnswer([FromRoute] Guid answerId)
 	{
-		// var currentUser = await GetCurrentUser();
-		return this.FromServiceResponse(await _answerService.GetAnswer(id));
+		var currentUser = await GetCurrentUser();
 
-		// return currentUser.Result != null ? 
-		//     this.FromServiceResponse(await UserService.GetUser(id)) : 
-		//     this.ErrorMessageResult<TeamDTO>(currentUser.Error);
+		return currentUser.Result != null ? 
+		    this.FromServiceResponse(await _answerService.GetAnswer(answerId, currentUser.Result)) : 
+		    this.ErrorMessageResult<AnswerDTO>(currentUser.Error);
 	}
 	
-	// [Authorize]
+	[Authorize]
 	[HttpPost]
 	public async Task<ActionResult<RequestResponse>> Add([FromBody] AnswerAddDTO answer)
 	{
@@ -41,7 +41,7 @@ public class AnswerController : AuthorizedController
 		    this.ErrorMessageResult(currentUser.Error);
 	}
 
-	// [Authorize]
+	[Authorize]
 	[HttpPut]
 	public async Task<ActionResult<RequestResponse>> Update([FromBody] AnswerUpdateDTO answer)
 	{
@@ -52,14 +52,14 @@ public class AnswerController : AuthorizedController
 			this.ErrorMessageResult(currentUser.Error);
 	}
 	
-	// [Authorize]
+	[Authorize]
 	[HttpDelete("{answerId:guid}")]
-	public async Task<ActionResult<RequestResponse>> Delete([FromRoute] Guid id)
+	public async Task<ActionResult<RequestResponse>> Delete([FromRoute] Guid answerId)
 	{
 		var currentUser = await GetCurrentUser();
 		
 		return currentUser.Result != null ? 
-			this.FromServiceResponse(await _answerService.DeleteAnswer(id, currentUser.Result)) : 
+			this.FromServiceResponse(await _answerService.DeleteAnswer(answerId, currentUser.Result)) : 
 			this.ErrorMessageResult(currentUser.Error);
 	}
 }

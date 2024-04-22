@@ -7,7 +7,7 @@ using MobyLabWebProgramming.Core.Responses;
 public interface IAnswerService
 {
 
-    public Task<ServiceResponse<AnswerDTO>> GetAnswer(Guid id, CancellationToken cancellationToken = default);
+    public Task<ServiceResponse<AnswerDTO>> GetAnswer(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default);
     
     public Task<ServiceResponse<int>> GetAnswerCount(CancellationToken cancellationToken = default);
 

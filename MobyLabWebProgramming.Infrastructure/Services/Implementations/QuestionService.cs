@@ -1,4 +1,3 @@
-using System.Net;
 using MobyLabWebProgramming.Core.DataTransferObjects;
 using MobyLabWebProgramming.Core.Entities;
 using MobyLabWebProgramming.Core.Enums;
@@ -109,7 +108,6 @@ public class QuestionService : IQuestionService
 
 	public async Task<ServiceResponse> AddQuestion(QuestionAddDTO question, UserDTO requestingUser, CancellationToken cancellationToken = default)
 	{
-		
 		await _repository.AddAsync(new Question
 		{
 			Title = question.Title,

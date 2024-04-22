@@ -14,21 +14,34 @@ namespace MobyLabWebProgramming.Infrastructure.Services.Implementations;
 public class AnswerService : IAnswerService
 {
 	private readonly IRepository<WebAppDatabaseContext> _repository;
-	private readonly ILoginService _loginService;
 	
-	public AnswerService(IRepository<WebAppDatabaseContext> repository, ILoginService loginService)
+	public AnswerService(IRepository<WebAppDatabaseContext> repository)
 	{
 		_repository = repository;
-		_loginService = loginService;
 	}
 	
-	public async Task<ServiceResponse<AnswerDTO>> GetAnswer(Guid id, CancellationToken cancellationToken = default)
+	public async Task<ServiceResponse<AnswerDTO>> GetAnswer(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default)
 	{
-		var result = await _repository.GetAsync(new AnswerProjectionSpec(id), cancellationToken);
+		var answer = await _repository.GetAsync(new AnswerProjectionSpec(id), cancellationToken);
 
-		return result != null ? 
-			ServiceResponse<AnswerDTO>.ForSuccess(result) : 
-			ServiceResponse<AnswerDTO>.FromError(CommonErrors.AnswerNotFound);
+		if (answer == null)
+			return ServiceResponse<AnswerDTO>.FromError(CommonErrors.QuestionNotFound);
+		
+		var askingUser = await _repository.GetAsync(new UserSpec(answer.RespondingUser.Id), cancellationToken);
+		var currentUser = await _repository.GetAsync(new UserSpec(requestingUser.Id), cancellationToken);
+
+		if (currentUser == null || askingUser == null)
+			return ServiceResponse<AnswerDTO>.FromError(CommonErrors.UserNotFound);
+		
+		var askingUserMembership = await _repository.GetAsync(new TeamMembershipSpec(askingUser.MembershipId), cancellationToken);
+		var currentUserMembership = await _repository.GetAsync(new TeamMembershipSpec(currentUser.MembershipId), cancellationToken);
+		
+		if (askingUserMembership == null || currentUserMembership == null)
+			return ServiceResponse<AnswerDTO>.FromError(CommonErrors.AccessNotAllowed);
+
+		return askingUserMembership.TeamId == currentUserMembership.TeamId
+			? ServiceResponse<AnswerDTO>.ForSuccess(answer)
+			: ServiceResponse<AnswerDTO>.FromError(CommonErrors.AccessNotAllowed);
 	}
 
 	public async Task<ServiceResponse<int>> GetAnswerCount(CancellationToken cancellationToken = default)
@@ -40,9 +53,22 @@ public class AnswerService : IAnswerService
 	{
 		var existingQuestion = await _repository.GetAsync(new QuestionSpec(answer.QuestionId), cancellationToken);
 		if (existingQuestion == null)
-		{
-			return ServiceResponse.FromError(new(HttpStatusCode.NotFound, "This question doesn't exist", ErrorCodes.EntityNotFound));
-		}
+			return ServiceResponse.FromError(CommonErrors.QuestionNotFound);
+		
+		var askingUser = await _repository.GetAsync(new UserSpec(existingQuestion.UserId), cancellationToken);
+		var currentUser = await _repository.GetAsync(new UserSpec(requestingUser.Id), cancellationToken);
+
+		if (currentUser == null || askingUser == null)
+			return ServiceResponse.FromError(CommonErrors.UserNotFound);
+		
+		var askingUserMembership = await _repository.GetAsync(new TeamMembershipSpec(askingUser.MembershipId), cancellationToken);
+		var currentUserMembership = await _repository.GetAsync(new TeamMembershipSpec(currentUser.MembershipId), cancellationToken);
+		
+		if (askingUserMembership == null || currentUserMembership == null)
+			return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
+
+		if (askingUserMembership.TeamId != currentUserMembership.TeamId)
+			return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
 
 		await _repository.AddAsync(new Answer
 		{
@@ -51,23 +77,21 @@ public class AnswerService : IAnswerService
 			UserId = requestingUser.Id
 		}, cancellationToken);
         
-		return ServiceResponse.ForSuccess();	}
+		return ServiceResponse.ForSuccess();
+	}
 
 	public async Task<ServiceResponse> UpdateAnswer(AnswerUpdateDTO answer, UserDTO requestingUser,
 		CancellationToken cancellationToken = default)
 	{
 		var oldAnswer = await _repository.GetAsync(new AnswerSpec(answer.AnswerId), cancellationToken);
 		if (oldAnswer == null)
-		{
-			return ServiceResponse.FromError(new(HttpStatusCode.NotFound, "The answer doesn't exist!", ErrorCodes.EntityNotFound));
-		}
+			return ServiceResponse.FromError(CommonErrors.AnswerNotFound);
 
-		if (requestingUser.Id != oldAnswer.UserId || requestingUser.Role != UserRoleEnum.Admin)
-		{
-			return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or the owner user can update the answer!", ErrorCodes.CannotUpdate));
-		}
+		if (requestingUser.Id != oldAnswer.UserId && requestingUser.Role != UserRoleEnum.Admin)
+			return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
 
-		oldAnswer.Description = answer.Description;
+		if (answer.Description != null)
+			oldAnswer.Description = answer.Description;
         
 		await _repository.UpdateAsync(oldAnswer, cancellationToken);
         
@@ -76,10 +100,12 @@ public class AnswerService : IAnswerService
 
 	public async Task<ServiceResponse> DeleteAnswer(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default)
 	{
-		if (requestingUser.Role != UserRoleEnum.Admin && requestingUser.Id != id)
-		{
-			return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or the owner user can delete the answer!", ErrorCodes.CannotDelete));
-		}
+		var oldAnswer = await _repository.GetAsync(new AnswerSpec(id), cancellationToken);
+		if (oldAnswer == null)
+			return ServiceResponse.FromError(CommonErrors.AnswerNotFound);
+
+		if (requestingUser.Id != oldAnswer.UserId && requestingUser.Role != UserRoleEnum.Admin)
+			return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
 
 		await _repository.DeleteAsync<Answer>(id, cancellationToken);
 
