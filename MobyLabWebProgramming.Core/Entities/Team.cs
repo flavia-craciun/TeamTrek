@@ -8,5 +8,5 @@ public class Team : BaseEntity
     // Navigation property
     public ICollection<TeamMembership> TeamMemberships { get; set; } = default!;
     public User TeamLeader { get; set; } = default!;
-
+    
 }

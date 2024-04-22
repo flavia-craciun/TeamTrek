@@ -201,15 +201,28 @@ namespace MobyLabWebProgramming.Infrastructure.Migrations
 
             modelBuilder.Entity("MobyLabWebProgramming.Core.Entities.TeamMembership", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("TeamId", "UserId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("TeamMembership");
                 });
@@ -227,6 +240,9 @@ namespace MobyLabWebProgramming.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
+
+                    b.Property<Guid>("MembershipId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -388,8 +404,8 @@ namespace MobyLabWebProgramming.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("MobyLabWebProgramming.Core.Entities.User", "User")
-                        .WithMany("TeamMemberships")
-                        .HasForeignKey("UserId")
+                        .WithOne("Membership")
+                        .HasForeignKey("MobyLabWebProgramming.Core.Entities.TeamMembership", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -430,13 +446,14 @@ namespace MobyLabWebProgramming.Infrastructure.Migrations
                 {
                     b.Navigation("Answers");
 
+                    b.Navigation("Membership")
+                        .IsRequired();
+
                     b.Navigation("ProjectMemberships");
 
                     b.Navigation("ProjectTasks");
 
                     b.Navigation("Questions");
-
-                    b.Navigation("TeamMemberships");
 
                     b.Navigation("UserFiles");
                 });

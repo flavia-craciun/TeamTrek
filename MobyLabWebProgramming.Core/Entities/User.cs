@@ -1,4 +1,5 @@
-﻿using MobyLabWebProgramming.Core.Enums;
+﻿using MobyLabWebProgramming.Core.DataTransferObjects;
+using MobyLabWebProgramming.Core.Enums;
 
 namespace MobyLabWebProgramming.Core.Entities;
 
@@ -11,6 +12,7 @@ public class User : BaseEntity
     public string Email { get; set; } = default!;
     public string Password { get; set; } = default!;
     public UserRoleEnum Role { get; set; } = default!;
+    public Guid MembershipId { get; set; } = default!;
 
     /// <summary>
     /// References to other entities such as this are used to automatically fetch correlated data, this is called a navigation property.
@@ -18,7 +20,7 @@ public class User : BaseEntity
     /// Note that this field will be null if not explicitly requested via a Include query, also note that the property is used by the ORM, in the database this collection doesn't exist. 
     /// </summary>
     
-    public Team MemberOfTeam { get; set; } = default!;
+    // public Team MemberOfTeam { get; set; } = default!;
     public ICollection<UserFile> UserFiles { get; set; } = default!;
     public TeamMembership Membership { get; set; } = default!;
     public ICollection<ProjectMembership> ProjectMemberships { get; set; } = default!;

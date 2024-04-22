@@ -8,5 +8,4 @@ public class Question : BaseEntity
     
     // Navigation property
     public User User { get; set; } = default!;
-    public ICollection<Answer>? Answers { get; set; }
 }

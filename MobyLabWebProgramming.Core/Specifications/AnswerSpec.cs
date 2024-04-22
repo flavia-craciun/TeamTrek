@@ -3,10 +3,15 @@ using MobyLabWebProgramming.Core.Entities;
 
 namespace MobyLabWebProgramming.Core.Specifications
 {
-    public sealed class AnswerSpec : BaseSpec<AnswerSpec, Question>
+    public sealed class AnswerSpec : Specification<Answer>
     {
-        public AnswerSpec(Guid id) : base(id)
+        public AnswerSpec(Guid id)
         {
+        }
+	
+        public AnswerSpec(Guid questionId, Guid id) : this(id)
+        {
+            Query.Where( a =>  a.QuestionId == questionId);
         }
     }
 }

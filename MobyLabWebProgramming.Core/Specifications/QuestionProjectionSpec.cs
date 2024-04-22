@@ -31,7 +31,7 @@ public sealed class QuestionProjectionSpec : BaseSpec<QuestionProjectionSpec, Qu
     {
     }
 
-    public QuestionProjectionSpec(string? search)
+    public QuestionProjectionSpec(string? search, Guid teamId)
     {
         search = !string.IsNullOrWhiteSpace(search) ? search.Trim() : null;
 
@@ -42,7 +42,7 @@ public sealed class QuestionProjectionSpec : BaseSpec<QuestionProjectionSpec, Qu
 
         var searchExpr = $"%{search.Replace(" ", "%")}%";
 
-        Query.Where(e => EF.Functions.ILike(e.Title, searchExpr) ||
-                                                   EF.Functions.ILike(e.User.Name, searchExpr));
+        Query.Where(e => e.User.Membership.TeamId == teamId && EF.Functions.ILike(e.Title, searchExpr) ||
+                         EF.Functions.ILike(e.User.Name, searchExpr));
     }
 }

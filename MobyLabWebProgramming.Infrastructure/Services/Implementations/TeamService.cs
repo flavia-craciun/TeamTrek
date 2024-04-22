@@ -2,6 +2,7 @@ using System.Net;
 using MobyLabWebProgramming.Core.Constants;
 using MobyLabWebProgramming.Core.DataTransferObjects;
 using MobyLabWebProgramming.Core.Entities;
+using MobyLabWebProgramming.Core.Enums;
 using MobyLabWebProgramming.Core.Errors;
 using MobyLabWebProgramming.Core.Requests;
 using MobyLabWebProgramming.Core.Responses;
@@ -37,45 +38,75 @@ public class TeamService : ITeamService
         return ServiceResponse<PagedResponse<TeamDTO>>.ForSuccess(result);
     }
 
-    public async Task<ServiceResponse<List<UserDTO>>> GetTeamMembers(Guid teamId, CancellationToken cancellationToken = default)
+    public async Task<ServiceResponse<List<MemberDTO>>> GetTeamMembers(Guid teamId, CancellationToken cancellationToken = default)
     {
+        Console.WriteLine($"Id: {teamId}");
         var result = await _repository.ListAsync(new TeamMembershipSpec(teamId), cancellationToken);
+        Console.WriteLine($"Memberships: {result.Count}");
 
-        if (result != null)
+        if (result == null) 
+            return ServiceResponse<List<MemberDTO>>.FromError(CommonErrors.TeamNotFound);
+        
+        var userIds = result.Select(tm => tm.UserId).ToList();
+        var users = await _repository.ListAsync(new UserSpec(userIds), cancellationToken);
+
+        if (users == null) 
+            return ServiceResponse<List<MemberDTO>>.FromError(CommonErrors.MembersNotFound);
+            
+        var userDTOs = users.Select(u => new MemberDTO
         {
-            var userIds = result.Select(tm => tm.UserId).ToList();
+            Name = u.Name,
+            Email = u.Email,
+            Role = u.Role
+        }).ToList();
 
-            var users = await _repository.ListAsync(new UserSpec(userIds), cancellationToken);
+        return ServiceResponse<List<MemberDTO>>.ForSuccess(userDTOs);
 
-            if (users != null)
-            {
-                var userDTOs = users.Select(u => new UserDTO
-                {
-                    Name = u.Name,
-                    Email = u.Email,
-                    Role = u.Role
-                }).ToList();
-
-                return ServiceResponse<List<UserDTO>>.ForSuccess(userDTOs);
-            }
-            else
-            {
-                return ServiceResponse<List<UserDTO>>.FromError(CommonErrors.MembersNotFound);
-            }
-        }
-        else
-        {
-            return ServiceResponse<List<UserDTO>>.FromError(CommonErrors.TeamNotFound);
-        }
-    }
-
-    public Task<ServiceResponse> UpdateTeam(TeamUpdateDTO team, UserDTO? requestingUser = default, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
     }
     
-    public Task<ServiceResponse> AddTeam(TeamUpdateDTO team, UserDTO? requestingUser = default, CancellationToken cancellationToken = default)
+    public async Task<ServiceResponse> AddTeam(TeamAddDTO team, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var teamLeader = await _repository.GetAsync(new UserSpec(team.TeamLeaderId), cancellationToken);
+        if (teamLeader == null || teamLeader.Role != UserRoleEnum.Admin)
+        {
+            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only an admin can add a new team!", ErrorCodes.CannotAdd));
+        }
+        
+        // FIXME: add condition to check if the currentUser already has an existing team
+
+        var existingTeam = await _repository.GetAsync(new TeamSpec(team.TeamName), cancellationToken);
+        if (existingTeam != null)
+        {
+            return ServiceResponse.FromError(new(HttpStatusCode.Conflict, "The team name is already in use!", ErrorCodes.TeamAlreadyExists));
+        }
+
+        await _repository.AddAsync(new Team
+        {
+            TeamName = team.TeamName,
+            TeamLeaderId = team.TeamLeaderId
+        }, cancellationToken);
+        
+        return ServiceResponse.ForSuccess();
+    }
+    
+    public async Task<ServiceResponse> UpdateTeam(TeamUpdateDTO team, CancellationToken cancellationToken = default)
+    {
+        var teamLeader = await _repository.GetAsync(new UserSpec(team.TeamLeaderId), cancellationToken);
+        if (teamLeader == null || teamLeader.Role != UserRoleEnum.Admin)
+        {
+            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the team leader can edit the team!", ErrorCodes.CannotUpdate));
+        }
+
+        var oldTeam = await _repository.GetAsync(new TeamSpec(team.TeamId), cancellationToken);
+        if (oldTeam == null)
+        {
+            return ServiceResponse.FromError(new(HttpStatusCode.NotFound, "The team doesn't exist!", ErrorCodes.EntityNotFound));
+        }
+
+        oldTeam.TeamName = team.TeamName;
+        
+        await _repository.UpdateAsync(oldTeam, cancellationToken);
+        
+        return ServiceResponse.ForSuccess();
     }
 }

@@ -21,11 +21,6 @@ public sealed class UserProjectionSpec : BaseSpec<UserProjectionSpec, User, User
         Email = e.Email,
         Name = e.Name,
         Role = e.Role,
-        MemberOfTeam = new TeamDTO
-        {
-            TeamId = e.MemberOfTeam.Id,
-            TeamName = e.MemberOfTeam.TeamName,
-        },
     };
 
     public UserProjectionSpec(bool orderByCreatedAt = true) : base(orderByCreatedAt)

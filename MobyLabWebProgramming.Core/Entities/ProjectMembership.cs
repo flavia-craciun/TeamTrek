@@ -1,3 +1,5 @@
+using MobyLabWebProgramming.Core.Specifications;
+
 namespace MobyLabWebProgramming.Core.Entities;
 
 public class ProjectMembership

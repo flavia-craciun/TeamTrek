@@ -8,12 +8,17 @@ public class TeamMembershipConfiguration : IEntityTypeConfiguration<TeamMembersh
 {
     public void Configure(EntityTypeBuilder<TeamMembership> builder)
     {
-        builder.HasKey(pm => new { pm.TeamId, pm.UserId });
+        builder.Property(tm => tm.Id)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+        builder.HasKey(tm => tm.Id);
         builder.HasOne(tm => tm.Team)
             .WithMany(t => t.TeamMemberships)
-            .HasForeignKey(tm => tm.TeamId);
+            .HasForeignKey(tm => tm.TeamId)
+            .IsRequired();
         builder.HasOne(tm => tm.User)
-            .WithMany(u => u.TeamMemberships)
-            .HasForeignKey(tm => tm.UserId);
+            .WithOne(t => t.Membership)
+            .HasForeignKey<TeamMembership>(tm => tm.UserId)
+            .IsRequired();
     }
 }

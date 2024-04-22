@@ -28,7 +28,8 @@ public class LoginService : ILoginService
             Claims = new Dictionary<string, object> // Add any other claims in the JWT, you can even add custom claims if you want.
             {
                 { ClaimTypes.Name, user.Name },
-                { ClaimTypes.Email, user.Email }
+                { ClaimTypes.Email, user.Email },
+                { ClaimTypes.Role, user.Role.ToString() }
             },
             IssuedAt = issuedAt, // This sets the "iat" claim to indicate then the JWT was emitted.
             Expires = issuedAt.Add(expiresIn), // This sets the "exp" claim to indicate when the JWT expires and cannot be used.
@@ -36,6 +37,7 @@ public class LoginService : ILoginService
             Audience = _jwtConfiguration.Audience, // This sets the "aud" claim to indicate to which client the JWT is intended to.
             SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature) // Sign the JWT, it will set the algorithm in the JWT header to "HS256" for HMAC with SHA256.
         };
+        
 
         return tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor)); // Create the token.
     }

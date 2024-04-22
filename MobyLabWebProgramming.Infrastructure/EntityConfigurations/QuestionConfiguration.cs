@@ -25,10 +25,5 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
             .HasForeignKey(e => e.UserId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
-        builder.HasMany(e => e.Answers)
-            .WithOne(e => e.Question)
-            .HasForeignKey(e => e.QuestionId)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

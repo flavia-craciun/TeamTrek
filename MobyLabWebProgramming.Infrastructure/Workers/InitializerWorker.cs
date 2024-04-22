@@ -42,13 +42,15 @@ public class InitializerWorker : BackgroundService
             {
                 _logger.LogInformation("No user found, adding default user!");
 
+                Guid adminTeamId = new Guid("1cf9e328-b368-41c7-89b6-bc9378dfddc2");
+
                 await userService.AddUser(new()
                 {
                     Email = "admin@default.com",
                     Name = "Admin",
                     Role = UserRoleEnum.Admin,
                     Password = PasswordUtils.HashPassword("default")
-                }, cancellationToken: cancellationToken);
+                }, adminTeamId ,cancellationToken: cancellationToken);
             }
         }
         catch (Exception ex)

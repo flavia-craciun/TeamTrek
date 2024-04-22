@@ -2,8 +2,8 @@ namespace MobyLabWebProgramming.Core.Entities;
 
 public class Answer : BaseEntity
 {
-    public Guid QuestionId { get; set; } = default!;
-    public Guid UserId { get; set; } = default!;
+    public Guid QuestionId { get; set; }
+    public Guid UserId { get; set; }
     public string? Description { get; set; }
     
     // Navigation property

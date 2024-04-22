@@ -1,6 +1,4 @@
-﻿using MobyLabWebProgramming.Core.Enums;
-
-namespace MobyLabWebProgramming.Core.DataTransferObjects;
+﻿namespace MobyLabWebProgramming.Core.DataTransferObjects;
 
 public class TeamDTO
 {

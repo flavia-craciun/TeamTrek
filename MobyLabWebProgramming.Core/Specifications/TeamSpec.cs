@@ -8,5 +8,10 @@ namespace MobyLabWebProgramming.Core.Specifications
         public TeamSpec(Guid id) : base(id)
         {
         }
+        
+        public TeamSpec(string name)
+        {
+            Query.Where(e => e.TeamName == name);
+        }
     }
 }

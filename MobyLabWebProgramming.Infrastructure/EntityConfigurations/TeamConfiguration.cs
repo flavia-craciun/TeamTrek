@@ -20,9 +20,9 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
             .IsRequired();
         builder.Property(e => e.UpdatedAt)
             .IsRequired();
-        builder.HasMany(e => e.TeamMemberships)
-            .WithOne(e => e.Team)
-            .HasForeignKey(e => e.TeamId)
+        builder.HasMany(t => t.TeamMemberships)
+            .WithOne(tm => tm.Team)
+            .HasForeignKey(tm => tm.TeamId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
         builder.HasOne(e => e.TeamLeader)

@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MobyLabWebProgramming.Core.DataTransferObjects;
-using MobyLabWebProgramming.Core.Entities;
 using MobyLabWebProgramming.Core.Requests;
 using MobyLabWebProgramming.Core.Responses;
 using MobyLabWebProgramming.Infrastructure.Authorization;
@@ -24,7 +24,7 @@ public class TeamController : AuthorizedController
     ///  This method implements the Read operation (R from CRUD) on a team.
     /// </summary>
     // [Authorize]
-	[HttpGet("{id:guid}")]
+	[HttpGet("{teamId:guid}")]
 	public async Task<ActionResult<RequestResponse<TeamDTO>>> GetTeam([FromRoute] Guid id)
 	{
 		// var currentUser = await GetCurrentUser();
@@ -50,8 +50,8 @@ public class TeamController : AuthorizedController
 	}
 	
 	// [Authorize]
-	[HttpGet("{teamId}/members")]
-	public async Task<ActionResult<RequestResponse<List<UserDTO>>>> GetTeamMembers([FromRoute] Guid teamId)
+	[HttpGet("{teamId:guid}")]
+	public async Task<ActionResult<RequestResponse<List<MemberDTO>>>> GetTeamMembers([FromRoute] Guid teamId)
 	{
 		// var currentUser = await GetCurrentUser();
 		//
@@ -60,5 +60,20 @@ public class TeamController : AuthorizedController
 		// 	this.ErrorMessageResult<PagedResponse<TeamDTO>>(currentUser.Error);
 		
 		return this.FromServiceResponse(await _teamService.GetTeamMembers(teamId));
+	}
+	
+	[Authorize(Roles = "Admin")]
+	[HttpPost]
+	public async Task<ActionResult<RequestResponse>> Add([FromBody] TeamAddDTO team)
+	{
+		return this.FromServiceResponse(await _teamService.AddTeam(team));
+	}
+
+	[Authorize(Roles = "Admin")]
+	[HttpPut]
+	public async Task<ActionResult<RequestResponse>> Update([FromBody] TeamUpdateDTO team)
+	{
+		return this.FromServiceResponse(await _teamService.UpdateTeam(team));
+
 	}
 }
