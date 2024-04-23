@@ -8,7 +8,10 @@ public class ProjectMembershipConfiguration : IEntityTypeConfiguration<ProjectMe
 {
     public void Configure(EntityTypeBuilder<ProjectMembership> builder)
     {
-        builder.HasKey(pm => new { pm.ProjectId, pm.UserId });
+        builder.Property(tm => tm.Id)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+        builder.HasKey(tm => tm.Id);
         builder.HasOne(pm => pm.Project)
             .WithMany(t => t.ProjectMemberships)
             .HasForeignKey(pm => pm.ProjectId);

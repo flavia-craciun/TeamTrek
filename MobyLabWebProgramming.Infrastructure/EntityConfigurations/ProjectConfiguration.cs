@@ -30,9 +30,5 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
             .HasForeignKey(e => e.CreatedByUserId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
-        builder.HasMany(e => e.ProjectTasks)
-            .WithOne(e => e.Project)
-            .HasForeignKey(e => e.ProjectId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

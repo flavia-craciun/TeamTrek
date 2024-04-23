@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MobyLabWebProgramming.Core.Entities;
 
 namespace MobyLabWebProgramming.Infrastructure.EntityConfigurations;

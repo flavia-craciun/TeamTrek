@@ -8,6 +8,6 @@ public class Project : BaseEntity
 
     // Navigation property
     public ICollection<ProjectMembership> ProjectMemberships { get; set; } = default!;
-    public ICollection<ProjectTask>? ProjectTasks { get; set; }
+    public ICollection<ProjectTask> ProjectTasks { get; set; } = default!;
     public User CreatedByUser { get; set; } = default!;
 }

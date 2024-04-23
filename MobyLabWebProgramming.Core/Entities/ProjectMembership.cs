@@ -1,8 +1,6 @@
-using MobyLabWebProgramming.Core.Specifications;
-
 namespace MobyLabWebProgramming.Core.Entities;
 
-public class ProjectMembership
+public class ProjectMembership : BaseEntity
 {
     public Guid ProjectId { get; set; } = default!;
     public Guid UserId { get; set; } = default!;

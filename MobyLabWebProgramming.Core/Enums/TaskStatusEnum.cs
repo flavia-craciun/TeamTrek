@@ -1,6 +1,6 @@
-﻿using Ardalis.SmartEnum;
+﻿using System.Text.Json.Serialization;
+using Ardalis.SmartEnum;
 using Ardalis.SmartEnum.SystemTextJson;
-using System.Text.Json.Serialization;
 
 namespace MobyLabWebProgramming.Core.Enums;
 

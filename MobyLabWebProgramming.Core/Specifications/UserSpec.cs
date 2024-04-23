@@ -1,5 +1,5 @@
-﻿using MobyLabWebProgramming.Core.Entities;
-using Ardalis.Specification;
+﻿using Ardalis.Specification;
+using MobyLabWebProgramming.Core.Entities;
 
 namespace MobyLabWebProgramming.Core.Specifications;
 

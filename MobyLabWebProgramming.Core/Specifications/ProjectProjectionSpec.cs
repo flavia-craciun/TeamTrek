@@ -30,7 +30,7 @@ public sealed class ProjectProjectionSpec : BaseSpec<ProjectProjectionSpec, Proj
     {
     }
 
-    public ProjectProjectionSpec(string? search)
+    public ProjectProjectionSpec(string? search, ICollection<Guid> projectIds)
     {
         search = !string.IsNullOrWhiteSpace(search) ? search.Trim() : null;
 
@@ -41,8 +41,8 @@ public sealed class ProjectProjectionSpec : BaseSpec<ProjectProjectionSpec, Proj
 
         var searchExpr = $"%{search.Replace(" ", "%")}%";
 
-        Query.Where(e => e.Description != null && (EF.Functions.ILike(e.ProjectName, searchExpr) ||
-                                                   EF.Functions.ILike(e.Description, searchExpr) ||
-                                                   EF.Functions.ILike(e.CreatedByUser.Name, searchExpr)));
+        Query.Where(e => projectIds.Contains(e.Id) && (EF.Functions.ILike(e.ProjectName, searchExpr) ||
+                                                    EF.Functions.ILike(e.Description, searchExpr) ||
+                                                    EF.Functions.ILike(e.CreatedByUser.Name, searchExpr)));
     }
 }

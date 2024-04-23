@@ -1,25 +1,25 @@
 ﻿using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MobyLabWebProgramming.Infrastructure.Configurations;
-using MobyLabWebProgramming.Infrastructure.Database;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MobyLabWebProgramming.Infrastructure.Configurations;
 using MobyLabWebProgramming.Infrastructure.Converters;
+using MobyLabWebProgramming.Infrastructure.Database;
+using MobyLabWebProgramming.Infrastructure.Repositories.Implementation;
+using MobyLabWebProgramming.Infrastructure.Repositories.Interfaces;
 using MobyLabWebProgramming.Infrastructure.Services.Implementations;
 using MobyLabWebProgramming.Infrastructure.Services.Interfaces;
 using MobyLabWebProgramming.Infrastructure.Workers;
 using Serilog;
 using Serilog.Events;
-using MobyLabWebProgramming.Infrastructure.Repositories.Interfaces;
-using MobyLabWebProgramming.Infrastructure.Repositories.Implementation;
 
 namespace MobyLabWebProgramming.Infrastructure.Extensions;
 
@@ -172,6 +172,7 @@ public static class WebApplicationBuilderExtensions
         builder.Services
             .AddTransient<IUserService, UserService>()
             .AddTransient<ITeamService, TeamService>()
+            .AddTransient<IProjectService, ProjectService>()
             .AddTransient<IAnswerService, AnswerService>()
             .AddTransient<IQuestionService, QuestionService>()
             .AddTransient<ILoginService, LoginService>()
