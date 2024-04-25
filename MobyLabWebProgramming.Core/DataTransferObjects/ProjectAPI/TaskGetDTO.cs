@@ -1,6 +1,6 @@
 using MobyLabWebProgramming.Core.Enums;
 
-namespace MobyLabWebProgramming.Core.DataTransferObjects;
+namespace MobyLabWebProgramming.Core.DataTransferObjects.ProjectAPI;
 
 public class TaskGetDTO
 {

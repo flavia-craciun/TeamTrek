@@ -1,4 +1,5 @@
 ﻿using MobyLabWebProgramming.Core.DataTransferObjects;
+using MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
 
 namespace MobyLabWebProgramming.Infrastructure.Services.Interfaces;
 

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using MobyLabWebProgramming.Core.Constants;
 using MobyLabWebProgramming.Core.DataTransferObjects;
+using MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
 using MobyLabWebProgramming.Core.Entities;
 using MobyLabWebProgramming.Core.Enums;
 using MobyLabWebProgramming.Core.Errors;
@@ -81,7 +82,7 @@ public class UserService : IUserService
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin)
         {
-            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin can add users!", ErrorCodes.CannotAdd));
+            return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
         }
 
         var result = await _repository.GetAsync(new UserSpec(user.Email), cancellationToken);
@@ -121,7 +122,7 @@ public class UserService : IUserService
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Id != user.Id) // Verify who can add the user, you can change this however you se fit.
         {
-            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or the owner user can update the user!", ErrorCodes.CannotUpdate));
+            return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
         }
 
         var entity = await _repository.GetAsync(new UserSpec(user.Id), cancellationToken); 
@@ -141,7 +142,7 @@ public class UserService : IUserService
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Id != id) // Verify who can add the user, you can change this however you se fit.
         {
-            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or the owner user can delete the user!", ErrorCodes.CannotDelete));
+            return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
         }
 
         await _repository.DeleteAsync<User>(id, cancellationToken); // Delete the entity.

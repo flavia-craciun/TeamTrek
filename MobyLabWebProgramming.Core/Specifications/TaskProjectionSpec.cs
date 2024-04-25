@@ -3,6 +3,9 @@ using System.Linq.Expressions;
 using Ardalis.Specification;
 using Microsoft.EntityFrameworkCore;
 using MobyLabWebProgramming.Core.DataTransferObjects;
+using MobyLabWebProgramming.Core.DataTransferObjects.ProjectAPI;
+using MobyLabWebProgramming.Core.DataTransferObjects.TaskAPI;
+using MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
 using MobyLabWebProgramming.Core.Entities;
 
 namespace MobyLabWebProgramming.Core.Specifications;

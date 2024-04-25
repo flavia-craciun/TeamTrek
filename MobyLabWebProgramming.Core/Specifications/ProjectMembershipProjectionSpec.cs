@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using Ardalis.Specification;
 using MobyLabWebProgramming.Core.DataTransferObjects;
+using MobyLabWebProgramming.Core.DataTransferObjects.ProjectAPI;
 using MobyLabWebProgramming.Core.Entities;
 
 namespace MobyLabWebProgramming.Core.Specifications;

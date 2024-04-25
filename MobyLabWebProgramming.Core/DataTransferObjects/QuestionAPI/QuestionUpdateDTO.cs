@@ -1,4 +1,4 @@
-namespace MobyLabWebProgramming.Core.DataTransferObjects;
+namespace MobyLabWebProgramming.Core.DataTransferObjects.QuestionAPI;
 
 public class QuestionUpdateDTO
 {

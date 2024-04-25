@@ -2,6 +2,9 @@
 using Ardalis.Specification;
 using Microsoft.EntityFrameworkCore;
 using MobyLabWebProgramming.Core.DataTransferObjects;
+using MobyLabWebProgramming.Core.DataTransferObjects.AnswerAPI;
+using MobyLabWebProgramming.Core.DataTransferObjects.QuestionAPI;
+using MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
 using MobyLabWebProgramming.Core.Entities;
 
 namespace MobyLabWebProgramming.Core.Specifications;

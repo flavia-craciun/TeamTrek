@@ -1,4 +1,6 @@
-﻿namespace MobyLabWebProgramming.Core.DataTransferObjects;
+﻿using MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
+
+namespace MobyLabWebProgramming.Core.DataTransferObjects;
 
 /// <summary>
 /// This DTO is used to respond to a login with the JWT token and user information.

@@ -1,6 +1,8 @@
-﻿using MobyLabWebProgramming.Core.Enums;
+﻿using MobyLabWebProgramming.Core.DataTransferObjects.ProjectAPI;
+using MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
+using MobyLabWebProgramming.Core.Enums;
 
-namespace MobyLabWebProgramming.Core.DataTransferObjects;
+namespace MobyLabWebProgramming.Core.DataTransferObjects.TaskAPI;
 
 public class ProjectTaskDTO
 {

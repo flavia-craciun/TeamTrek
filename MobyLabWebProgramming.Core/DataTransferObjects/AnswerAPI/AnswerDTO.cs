@@ -1,4 +1,7 @@
-﻿namespace MobyLabWebProgramming.Core.DataTransferObjects;
+﻿using MobyLabWebProgramming.Core.DataTransferObjects.QuestionAPI;
+using MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
+
+namespace MobyLabWebProgramming.Core.DataTransferObjects.AnswerAPI;
 
 public class AnswerDTO
 {

@@ -9,9 +9,9 @@ namespace MobyLabWebProgramming.Core.Specifications
         {
         }
         
-        public TaskSpec(Guid projectId, Guid assignedToUserId)
+        public TaskSpec(Guid projectId, Guid id) : this(id)
         {
-            Query.Where(task => task.ProjectId == projectId && task.AssignedToUserId == assignedToUserId);
+            Query.Where(task => task.ProjectId == projectId);
         }
     }
 }

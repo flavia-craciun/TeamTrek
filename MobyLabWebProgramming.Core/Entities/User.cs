@@ -19,8 +19,6 @@ public class User : BaseEntity
     /// Note that this field will be null if not explicitly requested via a Include query, also note that the property is used by the ORM, in the database this collection doesn't exist. 
     /// </summary>
     
-    // public Team MemberOfTeam { get; set; } = default!;
-    public ICollection<UserFile> UserFiles { get; set; } = default!;
     public TeamMembership Membership { get; set; } = default!;
     public ICollection<ProjectMembership> ProjectMemberships { get; set; } = default!;
     public ICollection<ProjectTask> ProjectTasks { get; set; } = default!;

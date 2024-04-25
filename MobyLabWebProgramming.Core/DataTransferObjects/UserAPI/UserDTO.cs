@@ -1,6 +1,6 @@
 ﻿using MobyLabWebProgramming.Core.Enums;
 
-namespace MobyLabWebProgramming.Core.DataTransferObjects;
+namespace MobyLabWebProgramming.Core.DataTransferObjects.UserAPI;
 
 /// <summary>
 /// This DTO is used to transfer information about a user within the application and to client application.

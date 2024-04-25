@@ -9,7 +9,7 @@ public static class CommonErrors
 {
     public static ErrorMessage UserNotFound => new(HttpStatusCode.NotFound, "User doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage ProjectMemberNotFound => new(HttpStatusCode.NotFound, "This member is not associated with the project!", ErrorCodes.EntityNotFound);
-
+    public static ErrorMessage TaskNotFound => new(HttpStatusCode.NotFound, "Task doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage FileNotFound => new(HttpStatusCode.NotFound, "File not found on disk!", ErrorCodes.PhysicalFileNotFound);
     public static ErrorMessage AnswerNotFound => new(HttpStatusCode.NotFound, "Answer doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage ProjectNotFound => new(HttpStatusCode.NotFound, "Project doesn't exist!", ErrorCodes.EntityNotFound);

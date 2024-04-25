@@ -1,4 +1,4 @@
-namespace MobyLabWebProgramming.Core.DataTransferObjects;
+namespace MobyLabWebProgramming.Core.DataTransferObjects.TeamAPI;
 
 public class TeamAddDTO
 {
