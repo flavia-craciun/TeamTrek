@@ -31,7 +31,7 @@ public interface IUserService
     /// AddUser adds an user and verifies if requesting user has permissions to add one.
     /// If the requesting user is null then no verification is performed as it indicates that the application.
     /// </summary>
-    public Task<ServiceResponse> AddUser(UserAddDTO user, Guid teamId, UserDTO? requestingUser = default, CancellationToken cancellationToken = default);
+    public Task<ServiceResponse> AddUser(UserAddDTO user, UserDTO? requestingUser = default, CancellationToken cancellationToken = default);
     /// <summary>
     /// UpdateUser updates an user and verifies if requesting user has permissions to update it, if the user is his own then that should be allowed.
     /// If the requesting user is null then no verification is performed as it indicates that the application.

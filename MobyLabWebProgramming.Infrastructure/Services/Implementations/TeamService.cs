@@ -101,17 +101,32 @@ public class TeamService : ITeamService
         
         // FIXME: Poate fi scoasa dupa ce elimin tabela de membership
         var userMembership = await _repository.GetAsync(new TeamMembershipSpec(teamLeader.MembershipId), cancellationToken);
-        if (userMembership == null || userMembership.TeamId != null)
+        if (userMembership == null)
             return ServiceResponse<TeamDTO>.FromError(CommonErrors.AccessNotAllowed);
         
         var existingTeam = await _repository.GetAsync(new TeamSpec(team.TeamName), cancellationToken);
         if (existingTeam != null)
             return ServiceResponse.FromError(new(HttpStatusCode.Conflict, "The team name is already in use!", ErrorCodes.TeamAlreadyExists));
 
-        await _repository.AddAsync(new Team
+        var newTeam = new Team
         {
             TeamName = team.TeamName,
             TeamLeaderId = requestingUser.Id
+        };
+            
+        await _repository.AddAsync(newTeam, cancellationToken);
+        
+        var newMembership = new TeamMembership
+        {
+            TeamId = newTeam.Id,
+            UserId = requestingUser.Id
+        };
+            
+        await _repository.AddAsync(newMembership, cancellationToken);
+
+        await _repository.UpdateAsync(new User
+        {
+            MembershipId = newMembership.Id
         }, cancellationToken);
         
         return ServiceResponse.ForSuccess();
@@ -125,7 +140,7 @@ public class TeamService : ITeamService
         
         // FIXME: Poate fi modificat dupa ce elimin tabela de membership
         var userMembership = await _repository.GetAsync(new TeamMembershipSpec(teamLeader.MembershipId), cancellationToken);
-        if (userMembership == null || userMembership.TeamId != team.TeamLeaderId)
+        if (userMembership == null || userMembership.TeamId != team.TeamId)
             return ServiceResponse<TeamDTO>.FromError(CommonErrors.AccessNotAllowed);
 
         var oldTeam = await _repository.GetAsync(new TeamSpec(team.TeamId), cancellationToken);

@@ -11,7 +11,7 @@ public interface ITeamService
        public Task<ServiceResponse<TeamDTO>> GetTeam(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default);
        public Task<ServiceResponse<PagedResponse<TeamDTO>>> GetTeams(PaginationSearchQueryParams pagination, UserDTO requestingUser, CancellationToken cancellationToken = default);
        public Task<ServiceResponse<List<MemberDTO>>> GetTeamMembers(Guid teamId, UserDTO requestingUser, CancellationToken cancellationToken = default);
-       public Task<ServiceResponse> AddTeam(TeamAddDTO user, UserDTO requestingUser, CancellationToken cancellationToken = default);
+       public Task<ServiceResponse> AddTeam(TeamAddDTO team, UserDTO requestingUser, CancellationToken cancellationToken = default);
        public Task<ServiceResponse> UpdateTeam(TeamUpdateDTO team, UserDTO requestingUser, CancellationToken cancellationToken = default);
 
 }

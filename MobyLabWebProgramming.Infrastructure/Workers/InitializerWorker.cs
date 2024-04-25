@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MobyLabWebProgramming.Core.DataTransferObjects.TeamAPI;
 using MobyLabWebProgramming.Core.Enums;
 using MobyLabWebProgramming.Infrastructure.Authorization;
 using MobyLabWebProgramming.Infrastructure.Services.Interfaces;
@@ -27,7 +28,7 @@ public class InitializerWorker : BackgroundService
         {
             await using var scope = _serviceProvider.CreateAsyncScope(); // Here a new scope is created, this is useful to get new scoped instances.
             var userService = scope.ServiceProvider.GetService<IUserService>(); // Here an instance for a service is requested, it may fail if the component is not declared or
-                                                                                // an exception is thrown on it’s creation.
+            var teamService = scope.ServiceProvider.GetService<ITeamService>(); // an exception is thrown on it’s creation.
 
             if (userService == null)
             {
@@ -50,7 +51,7 @@ public class InitializerWorker : BackgroundService
                     Name = "Admin",
                     Role = UserRoleEnum.Admin,
                     Password = PasswordUtils.HashPassword("default")
-                }, adminTeamId ,cancellationToken: cancellationToken);
+                } ,cancellationToken: cancellationToken);
             }
         }
         catch (Exception ex)

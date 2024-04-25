@@ -36,7 +36,7 @@ public class UserService : IUserService
 
         return result != null ? 
             ServiceResponse<UserDTO>.ForSuccess(result) : 
-            ServiceResponse<UserDTO>.FromError(CommonErrors.UserNotFound); // Pack the result or error into a ServiceResponse.
+            ServiceResponse<UserDTO>.FromError(CommonErrors.UserNotFound);
     }
 
     public async Task<ServiceResponse<PagedResponse<UserDTO>>> GetUsers(PaginationSearchQueryParams pagination, CancellationToken cancellationToken = default)
@@ -78,7 +78,7 @@ public class UserService : IUserService
     public async Task<ServiceResponse<int>> GetUserCount(CancellationToken cancellationToken = default) => 
         ServiceResponse<int>.ForSuccess(await _repository.GetCountAsync<User>(cancellationToken)); // Get the count of all user entities in the database.
 
-    public async Task<ServiceResponse> AddUser(UserAddDTO user, Guid teamId, UserDTO? requestingUser, CancellationToken cancellationToken = default)
+    public async Task<ServiceResponse> AddUser(UserAddDTO user, UserDTO? requestingUser, CancellationToken cancellationToken = default)
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin)
         {
@@ -86,7 +86,6 @@ public class UserService : IUserService
         }
 
         var result = await _repository.GetAsync(new UserSpec(user.Email), cancellationToken);
-
         if (result != null)
         {
             return ServiceResponse.FromError(new(HttpStatusCode.Conflict, "The user already exists!", ErrorCodes.UserAlreadyExists));
@@ -101,17 +100,22 @@ public class UserService : IUserService
         };
 
         await _repository.AddAsync(newUser, cancellationToken);
-        
-        var newMembership = new TeamMembership
+
+        if (user.Role == UserRoleEnum.Member)
         {
-            TeamId = teamId,
-            UserId = newUser.Id
-        };
+            var team =  await _repository.GetAsync(new TeamProjectionSpec(user.TeamName), cancellationToken);
+        
+            var newMembership = new TeamMembership
+            {
+                TeamId = team.TeamId,
+                UserId = newUser.Id
+            };
+            
+            await _repository.AddAsync(newMembership, cancellationToken);
 
-        await _repository.AddAsync(newMembership, cancellationToken);
-
-        newUser.MembershipId = newMembership.Id;
-        await _repository.UpdateAsync(newUser, cancellationToken);
+            newUser.MembershipId = newMembership.Id;
+            await _repository.UpdateAsync(newUser, cancellationToken);
+        }
 
         await _mailService.SendMail(user.Email, "Welcome!", MailTemplates.UserAddTemplate(user.Name), true, "My App", cancellationToken); // You can send a notification on the user email. Change the email if you want.
 
