@@ -12,5 +12,7 @@
     "labels.removalConfirmation": "Confirmare stergere",
     "labels.addUser": "Adauga utilizator",
     "labels.addProject": "Adauga proiect",
-    "labels.editProject": "Editare proiect"
+    "labels.editProject": "Editare proiect",
+    "labels.addQuestion": "Adauga intrebare",
+    "labels.editQuestion": "Editare intrebare"
 }

@@ -14,30 +14,30 @@ import {
     TextField
 } from "@mui/material";
 import { DataLoadingContainer } from "../../LoadingDisplay";
-import { useProjectTableController } from "./ProjectsTable.controller";
-import { ProjectDTO, ProjectUpdateDTO } from "@infrastructure/apis/client";
+import { useQuestionTableController } from "./QuestionsTable.controller";
+import { QuestionDTO, QuestionUpdateDTO } from "@infrastructure/apis/client";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SearchIcon from "@mui/icons-material/Search";
-import { ProjectAddDialog } from "../../Dialogs/ProjectAddDialog";
-import { ProjectEditDialog } from "../../Dialogs/ProjectEditDialog";
+import { QuestionAddDialog } from "../../Dialogs/QuestionAddDialog";
+import { QuestionEditDialog } from "../../Dialogs/QuestionEditDialog";
 import { RemovalDialog } from "../../Dialogs/RemovalDialog";
 import { useAppSelector } from "@application/store";
 import { format } from "date-fns";
 
-const useHeader = (): { key: keyof ProjectDTO; name: string }[] => {
+const useHeader = (): { key: keyof QuestionDTO; name: string }[] => {
     const { formatMessage } = useIntl();
 
     return [
-        { key: "projectName", name: formatMessage({ id: "globals.projectName" }) },
+        { key: "title", name: formatMessage({ id: "globals.questionTitle" }) },
         { key: "description", name: formatMessage({ id: "globals.description" }) },
-        { key: "createdByUser", name: formatMessage({ id: "globals.addBy" }) },
-        { key: "createdAt", name: formatMessage({ id: "globals.createdAt" }) },
+        { key: "askingUser", name: formatMessage({ id: "globals.addBy" }) },
+        { key: "updatedAt", name: formatMessage({ id: "globals.modifiedAt" }) },
     ];
 };
 
 const getRowValues = (
-    entries: ProjectDTO[] | null | undefined,
+    entries: QuestionDTO[] | null | undefined,
     orderMap: { [key: string]: number }
 ) =>
     entries?.map((entry) => {
@@ -52,8 +52,8 @@ const getRowValues = (
         };
     });
 
-export const ProjectTable = () => {
-    const { userId: ownProjectId } = useAppSelector((x) => x.profileReducer);
+export const QuestionTable = () => {
+    const { userId: ownQuestionId } = useAppSelector((x) => x.profileReducer);
     const { formatMessage } = useIntl();
     const header = useHeader();
     const orderMap = header.reduce((acc, e, i) => {
@@ -68,24 +68,24 @@ export const ProjectTable = () => {
         tryReload,
         labelDisplay,
         remove
-    } = useProjectTableController();
+    } = useQuestionTableController();
     const rowValues = getRowValues(pagedData?.data, orderMap);
 
-    const [selectedProject, setSelectedProject] =
-        useState<ProjectUpdateDTO | null>(null);
-    const [selectedProjectName, setSelectedProjectName] = useState<string | null>(null);
+    const [selectedQuestion, setSelectedQuestion] =
+        useState<QuestionUpdateDTO | null>(null);
+    const [selectedQuestionName, setSelectedQuestionName] = useState<string | null>(null);
     const [isEditDialogOpen, setEditDialogOpen] = useState(false);
     const [isRemovalDialogOpen, setRemovalDialogOpen] = useState(false);
-    const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+    const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>("");
-    const [filteredProjects, setFilteredProjects] = useState<ProjectDTO[] | null>(null);
+    const [filteredQuestions, setFilteredQuestions] = useState<QuestionDTO[] | null>(null);
 
     useEffect(() => {
-        setFilteredProjects(pagedData?.data ?? null);
+        setFilteredQuestions(pagedData?.data ?? null);
     }, [pagedData]);
 
-    const handleEditClick = (project: ProjectUpdateDTO) => {
-        setSelectedProject(project);
+    const handleEditClick = (question: QuestionUpdateDTO) => {
+        setSelectedQuestion(question);
         setEditDialogOpen(true);
     };
 
@@ -93,22 +93,22 @@ export const ProjectTable = () => {
         setEditDialogOpen(false);
     };
 
-    const handleDeleteClick = (project: ProjectDTO) => {
-        setSelectedProjectName(project.projectName ? project.projectName : "");
-        setSelectedProjectId(project.projectId ? project.projectId : "");
+    const handleDeleteClick = (question: QuestionDTO) => {
+        setSelectedQuestionName(question.title ? question.title : "");
+        setSelectedQuestionId(question.questionId ? question.questionId : "");
         setRemovalDialogOpen(true);
     };
 
     const handleRemovalDialogClose = () => {
-        setSelectedProjectName(null);
-        setSelectedProjectId(null);
+        setSelectedQuestionName(null);
+        setSelectedQuestionId(null);
         setRemovalDialogOpen(false);
     };
 
     const handleConfirmRemoval = () => {
-        console.log(selectedProjectId);
-        if (selectedProjectId) {
-            remove(selectedProjectId);
+        console.log(selectedQuestionId);
+        if (selectedQuestionId) {
+            remove(selectedQuestionId);
             setRemovalDialogOpen(false);
         }
     };
@@ -119,11 +119,11 @@ export const ProjectTable = () => {
 
     const handleSearchIconClick = () => {
         if (pagedData?.data) {
-            const filtered = pagedData.data.filter((project) =>
-                project.projectName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                project.description?.toLowerCase().includes(searchQuery.toLowerCase())
+            const filtered = pagedData.data.filter((question) =>
+                question.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                question.description?.toLowerCase().includes(searchQuery.toLowerCase())
             );
-            setFilteredProjects(filtered);
+            setFilteredQuestions(filtered);
         }
     };
 
@@ -133,7 +133,7 @@ export const ProjectTable = () => {
             isLoading={isLoading}
             tryReload={tryReload}
         >
-            <ProjectAddDialog />
+            <QuestionAddDialog />
             <div style={{ display: "flex", alignItems: "center", marginBottom: 10, marginTop: 10 }}>
                 <TextField
                     style={{ width: 250 }}
@@ -175,12 +175,12 @@ export const ProjectTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {getRowValues(filteredProjects, orderMap)?.map(({ data, entry }, rowIndex) => (
+                        {getRowValues(filteredQuestions, orderMap)?.map(({ data, entry }, rowIndex) => (
                             <TableRow key={`row_${rowIndex + 1}`}>
                                 {data.map((keyValue, index) => (
                                     <TableCell key={`cell_${rowIndex + 1}_${index + 1}`}>
                                         {(() => {
-                                            if (keyValue.key === "createdAt") {
+                                            if (keyValue.key === "updatedAt") {
                                                 const dateValue = new Date(keyValue.value);
                                                 return format(dateValue, "dd/MM/yyyy");
                                             } else if (
@@ -205,7 +205,7 @@ export const ProjectTable = () => {
                                 <TableCell>
                                     <IconButton
                                         color="error"
-                                        onClick={() => !isUndefined(entry.projectName) && handleDeleteClick(entry || "")}
+                                        onClick={() => !isUndefined(entry.title) && handleDeleteClick(entry || "")}
                                     >
                                         <DeleteIcon color="error" fontSize="small" />
                                     </IconButton>
@@ -215,15 +215,15 @@ export const ProjectTable = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {selectedProject && (
-                <ProjectEditDialog
-                    initialData={selectedProject}
+            {selectedQuestion && (
+                <QuestionEditDialog
+                    initialData={selectedQuestion}
                     isOpen={isEditDialogOpen}
                     onClose={handleEditDialogClose}
                 />
             )}
             {<RemovalDialog
-                objectName={selectedProjectName ? selectedProjectName : "this"}
+                objectName={selectedQuestionName ? selectedQuestionName : "this"}
                 isOpen={isRemovalDialogOpen}
                 onClose={handleRemovalDialogClose}
                 onConfirm={handleConfirmRemoval}

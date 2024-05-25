@@ -12,5 +12,7 @@
     "labels.removalConfirmation": "Removal confirmation",
     "labels.addUser": "Add user",
     "labels.addProject": "Add project",
-    "labels.editProject": "Edit project"
+    "labels.editProject": "Edit project",
+    "labels.addQuestion": "Add question",
+    "labels.editQuestion": "Edit question"
 }

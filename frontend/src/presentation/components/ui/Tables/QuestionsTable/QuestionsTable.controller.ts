@@ -1,15 +1,15 @@
 import { useTableController } from "../Table.controller";
-import { useProjectApi } from "@infrastructure/apis/api-management";
+import { useQuestionApi } from "@infrastructure/apis/api-management";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback } from "react";
 import { usePaginationController } from "../Pagination.controller";
-import { ProjectUpdateDTO } from "@infrastructure/apis/client";
+import { QuestionUpdateDTO } from "@infrastructure/apis/client";
 
 /**
  * This is controller hook manages the table state including the pagination and data retrieval from the backend.
  */
-export const useProjectTableController = () => {
-    const { getProjects: { key: queryKey, query } ,  editProject: { key: editProjectKey, mutation: editProject }, deleteProject: { key: deleteProjectKey, mutation: deleteProject }} = useProjectApi(); // Use the API hook.
+export const useQuestionTableController = () => {
+    const { getQuestions: { key: queryKey, query } ,  editQuestion: { key: editQuestionKey, mutation: editQuestion }, deleteQuestion: { key: deleteQuestionKey, mutation: deleteQuestion }} = useQuestionApi(); // Use the API hook.
     const queryClient = useQueryClient(); // Get the query client.
     const { page, pageSize, setPagination } = usePaginationController(); // Get the pagination state.
     const { data, isError, isLoading } = useQuery({
@@ -17,18 +17,18 @@ export const useProjectTableController = () => {
         queryFn: () => query({ page, pageSize })
     });
     const { mutateAsync: deleteMutation } = useMutation({
-        mutationKey: [deleteProjectKey],
-        mutationFn: deleteProject
+        mutationKey: [deleteQuestionKey],
+        mutationFn: deleteQuestion
     }); // Use a mutation to remove an entry.
     const remove = useCallback(
         (id: string) => deleteMutation(id).then(() => queryClient.invalidateQueries({ queryKey: [queryKey] })),
         [queryClient, deleteMutation, queryKey]);
     const { mutateAsync: editMutation } = useMutation({
-        mutationKey: [editProjectKey],
-        mutationFn: editProject
+        mutationKey: [editQuestionKey],
+        mutationFn: editQuestion
     }); // Use a mutation to remove an entry.
     const edit = useCallback(
-        (project: ProjectUpdateDTO) => editMutation(project).then(() => queryClient.invalidateQueries({ queryKey: [queryKey] })),
+        (question: QuestionUpdateDTO) => editMutation(question).then(() => queryClient.invalidateQueries({ queryKey: [queryKey] })),
         [queryClient, editMutation, queryKey]);
 
     const tryReload = useCallback(

@@ -9,6 +9,7 @@ import { UsersPage } from "@presentation/pages/UsersPage";
 import { ProjectsPage } from "@presentation/pages/ProjectsPage";
 import { Route, Routes } from "react-router-dom";
 import { AppRoute } from "routes";
+import { QuestionsPage } from "@presentation/pages/QuestionsPage";
 
 export function App() {
   const isAdmin = useOwnUserHasRole(UserRoleEnum.Admin);
@@ -21,6 +22,7 @@ export function App() {
         <Route path={AppRoute.Login} element={<LoginPage />} />
         {isAdmin && <Route path={AppRoute.Users} element={<UsersPage />} />} {/* If the user doesn't have the right role this route shouldn't be used. */}
         {isAdmin && <Route path={AppRoute.Projects} element={<ProjectsPage />} />}
+        {isAdmin && <Route path={AppRoute.Questions} element={<QuestionsPage />} />}
       </Routes>
     </AppIntlProvider>
 }
