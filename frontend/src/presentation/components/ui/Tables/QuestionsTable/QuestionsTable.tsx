@@ -25,14 +25,14 @@ import { RemovalDialog } from "../../Dialogs/RemovalDialog";
 import { useAppSelector } from "@application/store";
 import { format } from "date-fns";
 
-const useHeader = (): { key: keyof QuestionDTO; name: string }[] => {
+const useHeader = (): { key: string; name: string }[] => {
     const { formatMessage } = useIntl();
 
     return [
         { key: "title", name: formatMessage({ id: "globals.questionTitle" }) },
         { key: "description", name: formatMessage({ id: "globals.description" }) },
-        { key: "askingUser", name: formatMessage({ id: "globals.addBy" }) },
         { key: "updatedAt", name: formatMessage({ id: "globals.modifiedAt" }) },
+        { key: "answerCount", name: formatMessage({ id: "globals.answerCount" }) },
     ];
 };
 
@@ -67,7 +67,8 @@ export const QuestionTable = () => {
         isLoading,
         tryReload,
         labelDisplay,
-        remove
+        remove,
+        getAnswers
     } = useQuestionTableController();
     const rowValues = getRowValues(pagedData?.data, orderMap);
 
@@ -79,10 +80,39 @@ export const QuestionTable = () => {
     const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [filteredQuestions, setFilteredQuestions] = useState<QuestionDTO[] | null>(null);
+    const [answerCounts, setAnswerCounts] = useState<{ [key: string]: number }>({});
+
+    // Fetch answer counts for each question
+    const fetchAnswerCounts = async () => {
+        const counts: { [key: string]: number } = {}; // Define type for counts object
+        for (const question of filteredQuestions || []) {
+            if (isUndefined(question.questionId))
+                continue;
+            const count = await getAnswers(question.questionId) 
+            
+            counts[question.questionId] = count ? count : 0;
+        }
+        setAnswerCounts(counts);
+    };
 
     useEffect(() => {
         setFilteredQuestions(pagedData?.data ?? null);
     }, [pagedData]);
+
+    useEffect(() => {
+        const fetchAnswerCounts = async () => {
+            const counts: { [key: string]: number } = {};
+            for (const question of filteredQuestions || []) {
+                if (!isUndefined(question.questionId)) {
+                    const count = await getAnswers(question.questionId);
+                    counts[question.questionId] = count ? count : 0;
+                }
+            }
+            setAnswerCounts(counts);
+        };
+
+        fetchAnswerCounts();
+    }, [filteredQuestions, getAnswers]);
 
     const handleEditClick = (question: QuestionUpdateDTO) => {
         setSelectedQuestion(question);
@@ -163,7 +193,7 @@ export const QuestionTable = () => {
                     />
                 )}
 			 </div>	
-			 <TableContainer component={Paper} style={{ height: '500px', width: '100%' }}>
+             <TableContainer component={Paper} style={{ height: '500px', width: '100%' }}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -194,6 +224,7 @@ export const QuestionTable = () => {
                                         })()}
                                     </TableCell>
                                 ))}
+                                <TableCell>{answerCounts[!isUndefined(entry.questionId) ? entry.questionId : ""]}</TableCell>
                                 <TableCell>
                                     <IconButton
                                         color="primary"

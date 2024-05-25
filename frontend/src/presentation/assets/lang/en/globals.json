@@ -25,6 +25,7 @@
     "globals.createdAt": "Created at",
     "globals.modifiedAt": "Last modified",
     "globals.file": "File",
+    "globals.answerCount": "Replies",
     "globals.placeholders.textInput": "Please enter {fieldName}",
     "globals.placeholders.selectInput": "Please select the {fieldName}",
     "globals.validations.requiredField": "{fieldName} is a required field!",

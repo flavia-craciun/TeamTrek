@@ -25,6 +25,7 @@
     "globals.createdAt": "Creat la",
     "globals.modifiedAt": "Ultima modificare",
     "globals.file": "Fisier",
+    "globals.answerCount": "Raspunsuri",
     "globals.placeholders.textInput": "Va rugam sa introduceti {fieldName}",
     "globals.placeholders.selectInput": "Va rugam sa selectati {fieldName}",
     "globals.validations.requiredField": "{fieldName} este camp obligatoriu!",
