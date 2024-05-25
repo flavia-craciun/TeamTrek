@@ -1,0 +1,13 @@
+{
+    "labels.itemsPerPage": "Items per page",
+    "labels.paginationLabelNormal": "{from}-{to} of {count}",
+    "labels.paginationLabelOverflow": "{from}-{to} of more than {to}",
+    "labels.yes": "Yes",
+    "labels.no": "No",
+    "labels.actions": "Actions",
+    "labels.edit": "Edit",
+    "labels.delete": "Delete",
+    "labels.addUser": "Add user",
+    "labels.addProject": "Add project",
+    "labels.editProject": "Edit project"
+}
