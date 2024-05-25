@@ -41,6 +41,10 @@ export interface ApiQuestionAddPostRequest {
     questionAddDTO?: QuestionAddDTO;
 }
 
+export interface ApiQuestionDeleteQuestionIdDeleteRequest {
+    questionId: string;
+}
+
 export interface ApiQuestionGetQuestionAnswersQuestionIdGetRequest {
     questionId: string;
 }
@@ -92,6 +96,38 @@ export class QuestionApi extends runtime.BaseAPI {
      */
     async apiQuestionAddPost(requestParameters: ApiQuestionAddPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RequestResponse> {
         const response = await this.apiQuestionAddPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async apiQuestionDeleteQuestionIdDeleteRaw(requestParameters: ApiQuestionDeleteQuestionIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RequestResponse>> {
+        if (requestParameters.questionId === null || requestParameters.questionId === undefined) {
+            throw new runtime.RequiredError('questionId','Required parameter requestParameters.questionId was null or undefined when calling apiQuestionDeleteQuestionIdDelete.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = this.configuration.apiKey("Authorization"); // Bearer authentication
+        }
+
+        const response = await this.request({
+            path: `/api/Question/Delete/{questionId}`.replace(`{${"questionId"}}`, encodeURIComponent(String(requestParameters.questionId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RequestResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async apiQuestionDeleteQuestionIdDelete(requestParameters: ApiQuestionDeleteQuestionIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RequestResponse> {
+        const response = await this.apiQuestionDeleteQuestionIdDeleteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

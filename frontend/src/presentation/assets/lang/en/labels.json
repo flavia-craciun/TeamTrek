@@ -4,9 +4,12 @@
     "labels.paginationLabelOverflow": "{from}-{to} of more than {to}",
     "labels.yes": "Yes",
     "labels.no": "No",
+    "labels.confirm": "Confirm",
+    "labels.cancel": "Cancel",
     "labels.actions": "Actions",
     "labels.edit": "Edit",
     "labels.delete": "Delete",
+    "labels.removalConfirmation": "Removal confirmation",
     "labels.addUser": "Add user",
     "labels.addProject": "Add project",
     "labels.editProject": "Edit project"

@@ -10,6 +10,8 @@
     "globals.loading": "Loading",
     "globals.users": "Users",
     "globals.projects": "Projects",
+    "globals.feedback": "Feedback form",
+    "globals.questions": "Question hub",
     "globals.files": "Files",
     "globals.name": "Name",
     "globals.role": "Role",
@@ -23,5 +25,7 @@
     "globals.file": "File",
     "globals.placeholders.textInput": "Please enter {fieldName}",
     "globals.placeholders.selectInput": "Please select the {fieldName}",
-    "globals.validations.requiredField": "{fieldName} is a required field!"
+    "globals.validations.requiredField": "{fieldName} is a required field!",
+    "globals.placeholders.removalText": "Are you sure you want to remove {object} ?"
+
 }

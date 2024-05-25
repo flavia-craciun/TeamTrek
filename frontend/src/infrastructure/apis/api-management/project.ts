@@ -9,7 +9,7 @@ const getProjectsQueryKey = "getProjectsQuery";
 // const getProjectQueryKey = "getProjectQuery";
 const addProjectMutationKey = "addProjectMutation";
 const editProjectMutationKey = "editProjectMutation";
-// const deleteProjectMutationKey = "deleteProjectMutation";
+const deleteProjectMutationKey = "deleteProjectMutation";
 
 /**
  * Returns the an object with the callbacks that can be used for the React Query API, in this case to manage the project API.
@@ -22,7 +22,7 @@ export const useProjectApi = () => {
     // const getProject = (id: string) => new ProjectApi(config).apiProjectGetProjectProjectIdGetRaw({id});
     const addProject = (project: ProjectAddDTO) => new ProjectApi(config).apiProjectAddPost({ projectAddDTO: project });
     const editProject = (project: ProjectUpdateDTO) => new ProjectApi(config).apiProjectUpdatePut({ projectUpdateDTO: project });
-    // const deleteProject = (id: string) => new ProjectApi(config).api({ id });
+    const deleteProject = (projectId: string) => new ProjectApi(config).apiProjectDeleteProjectIdDelete({ projectId });
 
     return {
         getProjects: { // Return the query object.
@@ -41,9 +41,9 @@ export const useProjectApi = () => {
             key: editProjectMutationKey, // Add the key to identify the mutation.
             mutation: editProject // Add the mutation callback.
         },
-        // deleteProject: {
-        //     key: deleteProjectMutationKey,
-        //     mutation: deleteProject
-        // }
+        deleteProject: {
+            key: deleteProjectMutationKey,
+            mutation: deleteProject
+        }
     }
 }

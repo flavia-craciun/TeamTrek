@@ -4,9 +4,12 @@
     "labels.paginationLabelOverflow": "{from}-{to} din mai mult de {to}",
     "labels.yes": "Da",
     "labels.no": "Nu",
+    "labels.confirm": "Confirm",
+    "labels.cancel": "Anuleaza",
     "labels.actions": "Actiuni",
     "labels.edit": "Editare",
     "labels.delete": "Stergere",
+    "labels.removalConfirmation": "Confirmare stergere",
     "labels.addUser": "Adauga utilizator",
     "labels.addProject": "Adauga proiect",
     "labels.editProject": "Editare proiect"

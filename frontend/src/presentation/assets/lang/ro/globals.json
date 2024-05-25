@@ -10,6 +10,8 @@
     "globals.loading": "Se incarca",
     "globals.users": "Utilizatori",
     "globals.projects": "Proiecte",
+    "globals.feedback": "Formular feedback",
+    "globals.questions": "Intreaba echipa",
     "globals.files": "Fisiere",
     "globals.name": "Nume",
     "globals.projectName": "Titlu proiect",
@@ -23,5 +25,6 @@
     "globals.file": "Fisier",
     "globals.placeholders.textInput": "Va rugam sa introduceti {fieldName}",
     "globals.placeholders.selectInput": "Va rugam sa selectati {fieldName}",
-    "globals.validations.requiredField": "{fieldName} este camp obligatoriu!"
+    "globals.validations.requiredField": "{fieldName} este camp obligatoriu!",
+    "globals.placeholders.removalText": "Sigur doriti sa stergeti {object} ?"
 }

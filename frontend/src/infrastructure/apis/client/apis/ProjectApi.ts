@@ -52,6 +52,10 @@ export interface ApiProjectDeleteMemberDeleteRequest {
     projectMembersDTO?: ProjectMembersDTO;
 }
 
+export interface ApiProjectDeleteProjectIdDeleteRequest {
+    projectId: string;
+}
+
 export interface ApiProjectGetProjectProjectIdGetRequest {
     projectId: string;
 }
@@ -165,6 +169,38 @@ export class ProjectApi extends runtime.BaseAPI {
      */
     async apiProjectDeleteMemberDelete(requestParameters: ApiProjectDeleteMemberDeleteRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RequestResponse> {
         const response = await this.apiProjectDeleteMemberDeleteRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async apiProjectDeleteProjectIdDeleteRaw(requestParameters: ApiProjectDeleteProjectIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RequestResponse>> {
+        if (requestParameters.projectId === null || requestParameters.projectId === undefined) {
+            throw new runtime.RequiredError('projectId','Required parameter requestParameters.projectId was null or undefined when calling apiProjectDeleteProjectIdDelete.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = this.configuration.apiKey("Authorization"); // Bearer authentication
+        }
+
+        const response = await this.request({
+            path: `/api/Project/Delete/{projectId}`.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters.projectId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RequestResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async apiProjectDeleteProjectIdDelete(requestParameters: ApiProjectDeleteProjectIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RequestResponse> {
+        const response = await this.apiProjectDeleteProjectIdDeleteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

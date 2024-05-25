@@ -36,7 +36,7 @@ export const Navbar = () => {
           container
           item
           direction="row"
-          xs={12}
+          xs={20}
           alignItems="center"
           wrap="nowrap"
           columnSpacing={2}
@@ -54,20 +54,33 @@ export const Navbar = () => {
               direction="row"
               xs={12}
               alignItems="center"
-              wrap="nowrap"
               columnSpacing={15}
             >
-              <Grid container item direction="column" xs={1}>
+              {/* <Grid container item direction="column" xs={1}>
                 <Button color="inherit">
                   <Link style={{ color: 'white' }} to={AppRoute.Users}>
                     {formatMessage({ id: "globals.users" })}
                   </Link>
                 </Button>
-              </Grid>
+              </Grid> */}
               <Grid container item direction="column" xs={1}>
                 <Button color="inherit">
                   <Link style={{ color: 'white' }} to={AppRoute.Projects}>
                     {formatMessage({ id: "globals.projects" })}
+                  </Link>
+                </Button>
+              </Grid>
+              <Grid container item direction="column" xs={1}>
+                <Button color="inherit">
+                  <Link style={{ color: 'white' }} to={AppRoute.Questions}>
+                    {formatMessage({ id: "globals.questions" })}
+                  </Link>
+                </Button>
+              </Grid>
+              <Grid container item direction="column" xs={1}>
+                <Button color="inherit">
+                  <Link style={{ color: 'white' }} to={AppRoute.Feedback}>
+                    {formatMessage({ id: "globals.feedback" })}
                   </Link>
                 </Button>
               </Grid>
