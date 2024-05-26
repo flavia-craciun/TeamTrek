@@ -24,6 +24,5 @@ public sealed class FeedbackProjectionSpec : BaseSpec<FeedbackProjectionSpec, Fe
 
     public FeedbackProjectionSpec(Guid userId)
     {
-        Query.Where( a =>  a.UserId == userId);
     }
 }

@@ -7,6 +7,7 @@ namespace MobyLabWebProgramming.Core.Specifications
     {
         public FeedbackSpec(Guid id)
         {
+            Query.Where( a =>  a.UserId == id);
         }
     }
 }

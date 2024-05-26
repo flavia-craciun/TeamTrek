@@ -57,7 +57,7 @@ public class FeedbackService : IFeedbackService
 	public async Task<ServiceResponse> UpdateFeedback(FeedbackUpdateDTO feedback, UserDTO requestingUser,
 		CancellationToken cancellationToken = default)
 	{
-		var oldFeedback = await _repository.GetAsync(new FeedbackSpec(feedback.FeedbackId), cancellationToken);
+		var oldFeedback = await _repository.GetAsync(new FeedbackSpec(requestingUser.Id), cancellationToken);
 		if (oldFeedback == null)
 			return ServiceResponse.FromError(CommonErrors.FeedbackNotFound);
 
