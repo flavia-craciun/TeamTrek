@@ -20,6 +20,10 @@
     "globals.admin": "Administrator",
     "globals.client": "Client",
     "globals.personnel": "Personal",
+    "globals.agreeTerms": "Doresc sa primesc un raspuns in urma feedback-ulului.",
+    "globals.rating": "Evaluarea experientei tale:",
+    "globals.category": "Selecteaza sectiunea pe care ai frecventat-o cel mai mult:",
+    "globals.comments": "Sugestii de imbunatatiri:",     
     "globals.description": "Descriere",
     "globals.addBy": "Adaugat de", 
     "globals.createdAt": "Creat la",
@@ -28,6 +32,7 @@
     "globals.answerCount": "Raspunsuri",
     "globals.placeholders.textInput": "Va rugam sa introduceti {fieldName}",
     "globals.placeholders.selectInput": "Va rugam sa selectati {fieldName}",
+    "globals.placeholders.select": "--",
     "globals.validations.requiredField": "{fieldName} este camp obligatoriu!",
     "globals.placeholders.removalText": "Sigur doriti sa stergeti {object} ?"
 }

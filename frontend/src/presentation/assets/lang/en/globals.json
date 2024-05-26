@@ -18,6 +18,10 @@
     "globals.admin": "Admin",
     "globals.client": "Client",
     "globals.personnel": "Personnel",
+    "globals.agreeTerms": "Receive personal follow-up to your feedback.",
+    "globals.rating": "Rate your experience:",
+    "globals.category": "Select the section you frequented the most:",
+    "globals.comments": "Suggestions for improvement:",    
     "globals.projectName": "Project title",
     "globals.questionTitle": "Question title",
     "globals.description": "Description",
@@ -28,6 +32,7 @@
     "globals.answerCount": "Replies",
     "globals.placeholders.textInput": "Please enter {fieldName}",
     "globals.placeholders.selectInput": "Please select the {fieldName}",
+    "globals.placeholders.select": "--",
     "globals.validations.requiredField": "{fieldName} is a required field!",
     "globals.placeholders.removalText": "Are you sure you want to remove {object} ?"
 

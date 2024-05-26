@@ -82,9 +82,8 @@ export const QuestionTable = () => {
     const [filteredQuestions, setFilteredQuestions] = useState<QuestionDTO[] | null>(null);
     const [answerCounts, setAnswerCounts] = useState<{ [key: string]: number }>({});
 
-    // Fetch answer counts for each question
     const fetchAnswerCounts = async () => {
-        const counts: { [key: string]: number } = {}; // Define type for counts object
+        const counts: { [key: string]: number } = {};
         for (const question of filteredQuestions || []) {
             if (isUndefined(question.questionId))
                 continue;
