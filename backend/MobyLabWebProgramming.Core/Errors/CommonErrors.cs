@@ -14,6 +14,8 @@ public static class CommonErrors
     public static ErrorMessage AnswerNotFound => new(HttpStatusCode.NotFound, "Answer doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage ProjectNotFound => new(HttpStatusCode.NotFound, "Project doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage QuestionNotFound => new(HttpStatusCode.NotFound, "Question doesn't exist!", ErrorCodes.EntityNotFound);
+    public static ErrorMessage FeedbackNotFound => new(HttpStatusCode.NotFound, "Feedback doesn't exist!", ErrorCodes.EntityNotFound);
+
     public static ErrorMessage TeamNotFound => new(HttpStatusCode.NotFound, "Team doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage MembersNotFound => new(HttpStatusCode.NotFound, "This team doesn't have any members assigned!", ErrorCodes.EntityNotFound);
     public static ErrorMessage TasksNotFound => new(HttpStatusCode.NotFound, "This projecr doesn't have any tasks assigned!", ErrorCodes.EntityNotFound);

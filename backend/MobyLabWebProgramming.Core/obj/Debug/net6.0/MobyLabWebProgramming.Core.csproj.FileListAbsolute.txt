@@ -10,3 +10,15 @@
 /Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.pdb
 /Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/obj/Debug/net6.0/ref/MobyLabWebProgramming.Core.dll
 /Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/bin/Debug/net6.0/ref/MobyLabWebProgramming.Core.dll
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/bin/Debug/net6.0/MobyLabWebProgramming.Core.deps.json
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/bin/Debug/net6.0/MobyLabWebProgramming.Core.dll
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/bin/Debug/net6.0/ref/MobyLabWebProgramming.Core.dll
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/bin/Debug/net6.0/MobyLabWebProgramming.Core.pdb
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.csproj.AssemblyReference.cache
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.AssemblyInfoInputs.cache
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.AssemblyInfo.cs
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.csproj.CoreCompileInputs.cache
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.dll
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/ref/MobyLabWebProgramming.Core.dll
+/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/Debug/net6.0/MobyLabWebProgramming.Core.pdb

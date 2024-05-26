@@ -1011,11 +1011,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
+      "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
       "projectName": "MobyLabWebProgramming.Core",
-      "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
+      "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
       "packagesPath": "/Users/flaviacraciun/.nuget/packages/",
-      "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/obj/",
+      "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/flaviacraciun/.nuget/NuGet/NuGet.Config"

@@ -175,6 +175,7 @@ public static class WebApplicationBuilderExtensions
             .AddTransient<IProjectService, ProjectService>()
             .AddTransient<IAnswerService, AnswerService>()
             .AddTransient<IQuestionService, QuestionService>()
+            .AddTransient<IFeedbackService, FeedbackService>()
             .AddTransient<ILoginService, LoginService>()
             .AddTransient<IFileRepository, FileRepository>()
             .AddTransient<ITaskService, TaskService>()

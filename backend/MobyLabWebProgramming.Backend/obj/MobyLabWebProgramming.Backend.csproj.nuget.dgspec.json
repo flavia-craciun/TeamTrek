@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj": {}
+    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj": {}
   },
   "projects": {
-    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj": {
+    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj",
+        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj",
         "projectName": "MobyLabWebProgramming.Backend",
-        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj",
+        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Backend/MobyLabWebProgramming.Backend.csproj",
         "packagesPath": "/Users/flaviacraciun/.nuget/packages/",
-        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Backend/obj/",
+        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/flaviacraciun/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj": {
-                "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj"
+              "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj": {
+                "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj"
               }
             }
           }
@@ -71,14 +71,14 @@
         }
       }
     },
-    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj": {
+    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
+        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
         "projectName": "MobyLabWebProgramming.Core",
-        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
+        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj",
         "packagesPath": "/Users/flaviacraciun/.nuget/packages/",
-        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/obj/",
+        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/flaviacraciun/.nuget/NuGet/NuGet.Config"
@@ -152,14 +152,14 @@
         }
       }
     },
-    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj": {
+    "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj",
+        "projectUniqueName": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj",
         "projectName": "MobyLabWebProgramming.Infrastructure",
-        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj",
+        "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Infrastructure/MobyLabWebProgramming.Infrastructure.csproj",
         "packagesPath": "/Users/flaviacraciun/.nuget/packages/",
-        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Infrastructure/obj/",
+        "outputPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/flaviacraciun/.nuget/NuGet/NuGet.Config"
@@ -174,8 +174,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj": {
-                "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/dotnetbackend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj"
+              "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj": {
+                "projectPath": "/Users/flaviacraciun/Desktop/Facultate/semestrul 2/PWEB/TeamTrek/backend/MobyLabWebProgramming.Core/MobyLabWebProgramming.Core.csproj"
               }
             }
           }
