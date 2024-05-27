@@ -74,6 +74,17 @@ public class ProjectController : AuthorizedController
 	}
 	
 	[Authorize(Roles = "Admin")]
+	[HttpDelete("{projectId:guid}")]
+	public async Task<ActionResult<RequestResponse>> Delete([FromRoute] Guid projectId)
+	{
+		var currentUser = await GetCurrentUser();
+		
+		return currentUser.Result != null ? 
+			this.FromServiceResponse(await _projectService.DeleteProject(projectId, currentUser.Result)) : 
+			this.ErrorMessageResult(currentUser.Error);
+	}
+	
+	[Authorize(Roles = "Admin")]
 	[HttpPost]
 	public async Task<ActionResult<RequestResponse>> AddMember([FromBody] ProjectMembersDTO members)
 	{

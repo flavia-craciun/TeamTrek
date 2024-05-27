@@ -13,6 +13,8 @@ public interface IProjectService
 	public Task<ServiceResponse<List<TaskGetDTO>>> GetProjectTasks(Guid projectId, UserDTO requestingUser, CancellationToken cancellationToken = default);
 	public Task<ServiceResponse> AddProject(ProjectAddDTO project, UserDTO requestingUser, CancellationToken cancellationToken = default);
 	public Task<ServiceResponse> UpdateProject(ProjectUpdateDTO project, UserDTO requestingUser, CancellationToken cancellationToken = default);
+	public Task<ServiceResponse> DeleteProject(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default);
+
 	public Task<ServiceResponse> AddMembers(ProjectMembersDTO members, UserDTO requestingUser, CancellationToken cancellationToken = default);
 	public Task<ServiceResponse> DeleteMembers(ProjectMembersDTO members, UserDTO requestingUser, CancellationToken cancellationToken = default);
 

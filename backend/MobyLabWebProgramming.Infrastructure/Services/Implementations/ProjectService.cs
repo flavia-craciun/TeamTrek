@@ -116,6 +116,20 @@ public class ProjectService : IProjectService
         
 		return ServiceResponse.ForSuccess();
 	}
+	
+	public async Task<ServiceResponse> DeleteProject(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default)
+	{
+		var oldProject = await _repository.GetAsync(new ProjectSpec(id), cancellationToken);
+		if (oldProject == null)
+			return ServiceResponse.FromError(CommonErrors.ProjectNotFound);
+
+		if (requestingUser.Id != oldProject.CreatedByUserId && requestingUser.Role != UserRoleEnum.Admin)
+			return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
+
+		await _repository.DeleteAsync<Project>(id, cancellationToken);
+
+		return ServiceResponse.ForSuccess();
+	}
 
 	public async Task<ServiceResponse> AddMembers(ProjectMembersDTO members, UserDTO requestingUser,
 		CancellationToken cancellationToken = default)
@@ -155,7 +169,7 @@ public class ProjectService : IProjectService
 			if (membershipsToDelete == null)
 				return ServiceResponse.FromError(CommonErrors.ProjectMemberNotFound);
 			
-			await _repository.DeleteAsync<Answer>(membershipsToDelete.Id, cancellationToken);
+			await _repository.DeleteAsync<ProjectMembership>(membershipsToDelete.Id, cancellationToken);
 		}
 
 		return ServiceResponse.ForSuccess();
