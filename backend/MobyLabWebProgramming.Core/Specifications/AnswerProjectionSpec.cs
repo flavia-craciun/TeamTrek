@@ -44,8 +44,9 @@ public sealed class AnswerProjectionSpec : BaseSpec<AnswerProjectionSpec, Answer
     {
     }
 
-    public AnswerProjectionSpec(Guid id) : base(id)
+    public AnswerProjectionSpec(Guid questionId)
     {
+        Query.Where( a =>  a.QuestionId == questionId);
     }
 
 

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MobyLabWebProgramming.Core.DataTransferObjects;
 using MobyLabWebProgramming.Core.DataTransferObjects.AnswerAPI;
 using MobyLabWebProgramming.Core.DataTransferObjects.QuestionAPI;
 using MobyLabWebProgramming.Core.Requests;
@@ -70,6 +69,17 @@ public class QuestionController : AuthorizedController
 		
 		return currentUser.Result != null ? 
 			this.FromServiceResponse(await _questionService.UpdateQuestion(question, currentUser.Result)) : 
+			this.ErrorMessageResult(currentUser.Error);
+	}
+    
+	[Authorize(Roles = "Admin")]
+	[HttpDelete("{questionId:guid}")]
+	public async Task<ActionResult<RequestResponse>> Delete([FromRoute] Guid questionId)
+	{
+		var currentUser = await GetCurrentUser();
+		
+		return currentUser.Result != null ? 
+			this.FromServiceResponse(await _questionService.DeleteQuestion(questionId, currentUser.Result)) : 
 			this.ErrorMessageResult(currentUser.Error);
 	}
 }

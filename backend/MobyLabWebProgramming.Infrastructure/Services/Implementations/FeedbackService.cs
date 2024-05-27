@@ -83,7 +83,7 @@ public class FeedbackService : IFeedbackService
 
 	public async Task<ServiceResponse> DeleteFeedback(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default)
 	{
-		var oldFeedback = await _repository.GetAsync(new FeedbackSpec(id), cancellationToken);
+		var oldFeedback = await _repository.GetAsync(new FeedbackSpec(requestingUser.Id), cancellationToken);
 		if (oldFeedback == null)
 			return ServiceResponse.FromError(CommonErrors.FeedbackNotFound);
 

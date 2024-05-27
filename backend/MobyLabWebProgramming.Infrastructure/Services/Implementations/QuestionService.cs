@@ -62,29 +62,29 @@ public class QuestionService : IQuestionService
 		if (question == null) 
 			return ServiceResponse<List<AnswerGetDTO>>.FromError(CommonErrors.QuestionNotFound);
         
-		var answers = await _repository.ListAsync(new AnswerSpec(questionId), cancellationToken);
+		var answers = await _repository.ListAsync(new AnswerProjectionSpec(questionId), cancellationToken);
 
 		if (answers.Count == 0) 
-			return ServiceResponse<List<AnswerGetDTO>>.FromError(CommonErrors.AnswersNotFound);
+			return ServiceResponse<List<AnswerGetDTO>>.ForSuccess(new List<AnswerGetDTO>());
 		
 		var firstAnswer = answers.FirstOrDefault();
 		
 		var currentUser = await _repository.GetAsync(new UserSpec(requestingUser.Id), cancellationToken);
-		var answerUser = await _repository.GetAsync(new UserSpec(firstAnswer.UserId), cancellationToken);
+		var answerUser = await _repository.GetAsync(new UserSpec(firstAnswer.RespondingUser.Id), cancellationToken);
 		
-		if (currentUser == null || answerUser == null)
-			return ServiceResponse<List<AnswerGetDTO>>.FromError(CommonErrors.UserNotFound);
-
-		if (currentUser.TeamId != answerUser.TeamId)
-			return ServiceResponse<List<AnswerGetDTO>>.FromError(CommonErrors.AccessNotAllowed);
+		// if (currentUser == null || answerUser == null)
+		// 	return ServiceResponse<List<AnswerGetDTO>>.FromError(CommonErrors.UserNotFound);
+		//
+		// if (currentUser.TeamId != answerUser.TeamId)
+		// 	return ServiceResponse<List<AnswerGetDTO>>.FromError(CommonErrors.AccessNotAllowed);
 		
 		var answerDTOs = answers.Select(a => new AnswerGetDTO
 		{
 			Description = a.Description,
 			RespondingUser = new UserGetDTO
 			{
-				Name = a.User.Name,
-				Role = a.User.Role
+				Name = a.RespondingUser.Name,
+				Role = a.RespondingUser.Role
 			},
 			UpdatedAt = a.UpdatedAt
 		}).ToList();
@@ -122,5 +122,19 @@ public class QuestionService : IQuestionService
 		await _repository.UpdateAsync(oldQuestion, cancellationToken);
         
 		return ServiceResponse.ForSuccess();	
+	}
+	
+	public async Task<ServiceResponse> DeleteQuestion(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default)
+	{
+		var oldQuestion = await _repository.GetAsync(new QuestionSpec(id), cancellationToken);
+		if (oldQuestion == null)
+			return ServiceResponse.FromError(CommonErrors.QuestionNotFound);
+
+		if (requestingUser.Id != oldQuestion.UserId && requestingUser.Role != UserRoleEnum.Admin)
+			return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
+
+		await _repository.DeleteAsync<Question>(id, cancellationToken);
+
+		return ServiceResponse.ForSuccess();
 	}
 }

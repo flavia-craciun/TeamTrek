@@ -8,10 +8,5 @@ namespace MobyLabWebProgramming.Core.Specifications
         public AnswerSpec(Guid id)
         {
         }
-	
-        public AnswerSpec(Guid questionId, Guid id) : this(id)
-        {
-            Query.Where( a =>  a.QuestionId == questionId);
-        }
     }
 }

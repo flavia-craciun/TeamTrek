@@ -14,4 +14,6 @@ public interface IQuestionService
 	public Task<ServiceResponse<List<AnswerGetDTO>>> GetQuestionAnswers(Guid questionId, UserDTO requestingUser, CancellationToken cancellationToken = default);
 	public Task<ServiceResponse> AddQuestion(QuestionAddDTO question, UserDTO requestingUser, CancellationToken cancellationToken = default);
 	public Task<ServiceResponse> UpdateQuestion(QuestionUpdateDTO question, UserDTO requestingUser, CancellationToken cancellationToken = default);
+	public Task<ServiceResponse> DeleteQuestion(Guid id, UserDTO requestingUser, CancellationToken cancellationToken = default);
+
 }
