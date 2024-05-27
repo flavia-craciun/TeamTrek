@@ -34,7 +34,7 @@ const useInitFeedbackForm = () => {
         frequentedSection: yup.string()
             .required(formatMessage(
                 { id: "globals.validations.requiredField" },
-                { fieldName: formatMessage({ id: "globals.frequentedSection" }) }
+                { fieldName: formatMessage({ id: "globals.category" }) }
             ))
             .default(defaultValues.frequentedSection),
         rating: yup.number()
@@ -48,7 +48,7 @@ const useInitFeedbackForm = () => {
         suggestion: yup.string()
             .required(formatMessage(
                 { id: "globals.validations.requiredField" },
-                { fieldName: formatMessage({ id: "globals.suggestion" }) }
+                { fieldName: formatMessage({ id: "globals.comments" }) }
             ))
             .default(defaultValues.suggestion),
     });

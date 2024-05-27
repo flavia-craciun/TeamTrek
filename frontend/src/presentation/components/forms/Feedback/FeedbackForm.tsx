@@ -54,7 +54,7 @@ export const FeedbackForm = () => {
                     <Grid container item direction="column" xs={12} md={12} style={{ marginBottom: "1rem" }}>
                         <FormControl fullWidth error={!isUndefined(state.errors.frequentedSection)}>
                             <FormLabel required>
-                                <FormattedMessage id="globals.frequentedSection" />
+                                <FormattedMessage id="globals.category" />
                             </FormLabel>
                             <Select
                                 {...actions.register("frequentedSection")}
@@ -62,7 +62,7 @@ export const FeedbackForm = () => {
                                 defaultValue=""
                                 placeholder={formatMessage(
                                     { id: "globals.placeholders.selectInput" },
-                                    { fieldName: formatMessage({ id: "globals.frequentedSection" }) }
+                                    { fieldName: formatMessage({ id: "globals.category" }) }
                                 )}
                             >
                                 <MenuItem value="">
@@ -81,7 +81,7 @@ export const FeedbackForm = () => {
                     <Grid container item direction="column" xs={12} md={12} style={{ marginBottom: "1rem" }}>
                         <FormControl fullWidth error={!isUndefined(state.errors.suggestion)}>
                             <FormLabel>
-                                <FormattedMessage id="globals.suggestion" />
+                                <FormattedMessage id="globals.comments" />
                             </FormLabel>
                             <TextField
                                 {...actions.register("suggestion")}
@@ -97,7 +97,7 @@ export const FeedbackForm = () => {
                     <Grid container item direction="column" xs={12} md={12} style={{ marginBottom: "1rem" }}>
                         <FormControlLabel
                             control={<Checkbox {...actions.register("responseWanted")} />}
-                            label={formatMessage({ id: "globals.responseWanted" })}
+                            label={formatMessage({ id: "globals.agreeTerms" })}
                         />
                     </Grid>
                 </Grid>
