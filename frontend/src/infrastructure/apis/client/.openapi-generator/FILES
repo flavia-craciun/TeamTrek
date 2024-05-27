@@ -1,5 +1,6 @@
 apis/AnswerApi.ts
 apis/AuthorizationApi.ts
+apis/FeedbackApi.ts
 apis/ProjectApi.ts
 apis/ProjectTaskApi.ts
 apis/QuestionApi.ts
@@ -15,6 +16,10 @@ models/AnswerGetDTOListRequestResponse.ts
 models/AnswerUpdateDTO.ts
 models/ErrorCodes.ts
 models/ErrorMessage.ts
+models/FeedbackAddDTO.ts
+models/FeedbackDTO.ts
+models/FeedbackDTORequestResponse.ts
+models/FeedbackUpdateDTO.ts
 models/HttpStatusCode.ts
 models/LoginDTO.ts
 models/LoginResponseDTO.ts

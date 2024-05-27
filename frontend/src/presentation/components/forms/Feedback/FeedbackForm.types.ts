@@ -7,11 +7,13 @@ import {
     UseFormWatch
 } from "react-hook-form";
 
+type SetValueFunction = (name: keyof FeedbackFormModel, value: any, options?: Record<string, any>) => void;
+
 export type FeedbackFormModel = {
-    category: string;
-    rating: string;
-    agree: boolean;
-    comments: string;
+    frequentedSection: string;
+    suggestion: string;
+    responseWanted: boolean;
+    rating: number;
 };
 
 export type FeedbackFormState = {
@@ -23,7 +25,9 @@ export type FeedbackFormActions = {
     watch: UseFormWatch<FeedbackFormModel>;
     handleSubmit: UseFormHandleSubmit<FeedbackFormModel>;
     submit: (body: FeedbackFormModel) => void;
+    setValue: SetValueFunction; // Use the custom type here
 };
+
 export type FeedbackFormComputed = {
     defaultValues: FeedbackFormModel,
     isSubmitting: boolean
