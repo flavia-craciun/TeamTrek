@@ -56,13 +56,13 @@ export const Navbar = () => {
               alignItems="center"
               columnSpacing={15}
             >
-              {/* <Grid container item direction="column" xs={1}>
+              <Grid container item direction="column" xs={1}>
                 <Button color="inherit">
                   <Link style={{ color: 'white' }} to={AppRoute.Users}>
                     {formatMessage({ id: "globals.users" })}
                   </Link>
                 </Button>
-              </Grid> */}
+              </Grid>
               <Grid container item direction="column" xs={1}>
                 <Button color="inherit">
                   <Link style={{ color: 'white' }} to={AppRoute.Projects}>
@@ -93,6 +93,11 @@ export const Navbar = () => {
             {!loggedIn && <Button color="inherit">  {/* If the user is not logged in show a button that redirects to the login page. */}
               <Link style={{ color: 'white' }} to={AppRoute.Login}>
                 {formatMessage({ id: "globals.login" })}
+              </Link>
+            </Button>}
+            {!loggedIn && <Button color="inherit">  {/* If the user is not logged in show a button that redirects to the login page. */}
+              <Link style={{ color: 'white' }} to={AppRoute.Register}>
+                {formatMessage({ id: "globals.register" })}
               </Link>
             </Button>}
             {loggedIn && <Button onClick={logout} color="inherit" > {/* Otherwise show the logout button. */}
