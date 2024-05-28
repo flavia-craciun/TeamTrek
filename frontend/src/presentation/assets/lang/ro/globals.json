@@ -37,5 +37,6 @@
     "globals.placeholders.selectInput": "Va rugam sa selectati {fieldName}",
     "globals.placeholders.select": "--",
     "globals.validations.requiredField": "{fieldName} este camp obligatoriu!",
+    "globals.validations.passwordsMustMatch": "Parolele nu se potrivesc!",
     "globals.placeholders.removalText": "Sigur doriti sa stergeti {object} ?"
 }

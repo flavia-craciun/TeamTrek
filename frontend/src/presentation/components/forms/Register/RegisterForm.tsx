@@ -26,7 +26,7 @@ export const RegisterForm = (props: { onSubmit?: () => void }) => {
 
     return (
         <form onSubmit={actions.handleSubmit(actions.submit)}>
-            <Stack spacing={4} style={{ width: "700px" }}>
+            <Stack spacing={4} style={{paddingTop: "20px", width: "700px" }}>
                 <ContentCard title={formatMessage({ id: "globals.register" })}>
                     <Grid container item direction="row" xs={12} columnSpacing={4}>
                         <Grid container item direction="column" xs={12} md={12} style={{ marginBottom: "1rem" }}>

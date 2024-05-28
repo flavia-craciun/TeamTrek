@@ -37,6 +37,7 @@
     "globals.placeholders.selectInput": "Please select the {fieldName}",
     "globals.placeholders.select": "--",
     "globals.validations.requiredField": "{fieldName} is a required field!",
+    "globals.validations.passwordsMustMatch": "Passwords do not match!",
     "globals.placeholders.removalText": "Are you sure you want to remove {object} ?"
 
 }

@@ -81,10 +81,10 @@ public class UserService : IUserService
 
     public async Task<ServiceResponse> AddUser(UserAddDTO user, UserDTO? requestingUser, CancellationToken cancellationToken = default)
     {
-        if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin)
-        {
-            return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
-        }
+        // if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin)
+        // {
+        //     return ServiceResponse.FromError(CommonErrors.AccessNotAllowed);
+        // }
 
         var result = await _repository.GetAsync(new UserSpec(user.Email), cancellationToken);
         if (result != null)
@@ -98,6 +98,7 @@ public class UserService : IUserService
             Name = user.Name,
             Role = user.Role,
             Password = user.Password,
+            TeamId = new Guid("1cf9e328-b368-41c7-89b6-bc9378dfddc2")
         };
 
         await _repository.AddAsync(newUser, cancellationToken);
